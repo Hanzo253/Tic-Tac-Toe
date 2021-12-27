@@ -1,3 +1,15 @@
+let playerOne = {
+  name: "Player One",
+  turn: true,
+  score: 0,
+};
+
+let playerTwo = {
+  name: "Player Two",
+  turn: false,
+  score: 0,
+};
+
 const boxes = document.querySelectorAll(".box");
 const box1 = document.querySelector(".box-1");
 const box2 = document.querySelector(".box-2");
@@ -19,17 +31,27 @@ let XorO = true;
 
 const drawSymbol = () => {
   const symbol = document.querySelector(`.symbol-${symbolNum + 1}`);
-
+  const box = document.querySelector(`.box-${symbolNum + 1}`);
   if (XorO) {
-    symbol.innerHTML = `X`;
-    XorO = false;
+    if (symbol.innerHTML === "O") {
+      alert("Spot Taken");
+    } else {
+      symbol.innerHTML = `X`;
+      XorO = false;
+    }
   } else {
-    symbol.innerHTML = `O`;
-    XorO = true;
+    if (symbol.innerHTML === "X") {
+      alert("Spot Taken");
+    } else {
+      symbol.innerHTML = `O`;
+      XorO = true;
+    }
   }
 
-  dialog.showModal();
-  dialog.style.display = "block";
+  // dialog.showModal();
+  // dialog.style.display = "block";
+  box.style.cursor = "not-allowed";
+  // box.style.pointerEvents = "none";
 };
 
 const changeXorO = () => {
