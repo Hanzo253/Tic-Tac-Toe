@@ -9,8 +9,10 @@ const box7 = document.querySelector(".box-7");
 const box8 = document.querySelector(".box-8");
 const box9 = document.querySelector(".box-9");
 
-// const dialog = document.querySelector(".winner");
+const dialog = document.querySelector(".winner");
 // dialog.returnValue = "The Winner!";
+
+const restartBtn = document.querySelector(".restart");
 
 let symbolNum = 0;
 let XorO = true;
@@ -26,7 +28,8 @@ const drawSymbol = () => {
     XorO = true;
   }
 
-  // dialog.showModal();
+  dialog.showModal();
+  dialog.style.display = "block";
 };
 
 const changeXorO = () => {
@@ -40,3 +43,10 @@ const changeXorO = () => {
 };
 
 changeXorO();
+
+const restartGame = () => {
+  dialog.close();
+  dialog.style.display = "none";
+};
+
+restartBtn.addEventListener("click", restartGame);

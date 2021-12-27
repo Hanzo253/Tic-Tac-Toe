@@ -136,3 +136,45 @@ body {
 .symbol {
   font-size: 8.6rem;
 }
+
+/***************************/
+/* WINNER MESSAGE */
+/***************************/
+
+.message-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.winner {
+  position: absolute;
+  top: 45%;
+  bottom: 50%;
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 9.8rem;
+  margin: 0 auto;
+  padding: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.restart {
+  display: block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 1.4rem 2.4rem 1.6rem;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 3.2rem auto 0;
+}
