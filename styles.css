@@ -129,6 +129,38 @@ body {
   border-right: none;
 }
 
+.row-1 {
+  background-color: #495;
+}
+
+.row-2 {
+  background-color: #495;
+}
+
+.row-3 {
+  background-color: #495;
+}
+
+.column-1 {
+  background-color: #495;
+}
+
+.column-2 {
+  background-color: #495;
+}
+
+.column-3 {
+  background-color: #495;
+}
+
+.diagonal-1 {
+  background-color: #495;
+}
+
+.diagonal-2 {
+  background-color: #495;
+}
+
 /***************************/
 /* SYMBOLS */
 /***************************/
@@ -177,6 +209,20 @@ body {
   font-weight: 700;
   line-height: 1;
   margin: 3.2rem auto 0;
+}
+
+/***************************/
+/* TURN MESSAGE */
+/***************************/
+
+.turn-message {
+  text-align: center;
+  padding: 1.6rem;
+}
+
+.turn {
+  color: #212529;
+  font-size: 3rem;
 }
 
 /***************************/
