@@ -77,9 +77,6 @@ const drawSymbol = (event) => {
   }
 
   console.log(board);
-
-  // dialog.showModal();
-  // dialog.style.display = "block";
   box.style.cursor = "not-allowed";
   // box.style.pointerEvents = "none";
   checkWinner();
@@ -96,6 +93,18 @@ const changeSymbolNum = () => {
 };
 
 changeSymbolNum();
+
+const showWinMessage = (winner) => {
+  const message = document.querySelector(".win-message");
+
+  if (winner === null) {
+    message.innerText = `No winner! Draw!`;
+  } else {
+    message.innerText = `${winner} wins!`;
+  }
+  dialog.showModal();
+  dialog.style.display = "block";
+};
 
 const restartGame = () => {
   dialog.close();
@@ -125,8 +134,19 @@ const checkWinner = () => {
       boxes[combo[0] - 1].classList.add(highlightClass);
       boxes[combo[1] - 1].classList.add(highlightClass);
       boxes[combo[2] - 1].classList.add(highlightClass);
-      console.log(combo);
-      console.log(boxes);
+      if (boxValue1 === "X" && boxValue2 === "X" && boxValue3 === "X") {
+        showWinMessage(playerOne.name);
+        return;
+      } else if (boxValue1 === "O" && boxValue2 === "O" && boxValue3 === "O") {
+        showWinMessage(playerTwo.name);
+        return;
+      }
     }
+  }
+
+  const noWinnerBoard = board.every((box) => box !== null);
+
+  if (noWinnerBoard) {
+    showWinMessage(null);
   }
 };

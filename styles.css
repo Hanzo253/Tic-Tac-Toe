@@ -182,11 +182,10 @@ body {
 
 .winner {
   position: absolute;
-  top: 45%;
-  bottom: 50%;
+  top: 30%;
   overflow: hidden;
   max-width: 100%;
-  font-size: 9.8rem;
+  font-size: 3rem;
   margin: 0 auto;
   padding: 3.2rem;
   display: flex;
