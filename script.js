@@ -120,7 +120,10 @@ const restartGame = () => {
   for (let i = 0; i < symbols.length; i++) {
     symbols[i].innerHTML = "";
   }
-  boxes.forEach((box) => box.classList.remove("win-combo"));
+  boxes.forEach((box) => {
+    box.classList.remove("win-combo");
+    box.style.cursor = "default";
+  });
   if (playerOne.symbol === "X" || playerTwo.symbol === "O") {
     playerOne.symbol = "O";
     playerTwo.symbol = "X";
