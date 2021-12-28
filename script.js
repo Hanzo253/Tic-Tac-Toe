@@ -27,23 +27,27 @@ const box9 = document.querySelector(".box-9");
 const board = Array(boxes.length);
 board.fill(null);
 
+const lineStrike = document.querySelector("#strike-line");
+
 const winningCombos = [
   // rows
-  { combo: [1, 2, 3] },
-  { combo: [4, 5, 6] },
-  { combo: [7, 8, 9] },
+  { combo: [1, 2, 3], lineStrikeClass: "row-1" },
+  { combo: [4, 5, 6], lineStrikeClass: "row-2" },
+  { combo: [7, 8, 9], lineStrikeClass: "row-3" },
   // columns
-  { combo: [1, 4, 7] },
-  { combo: [2, 5, 8] },
-  { combo: [3, 6, 9] },
+  { combo: [1, 4, 7], lineStrikeClass: "column-1" },
+  { combo: [2, 5, 8], lineStrikeClass: "column-2" },
+  { combo: [3, 6, 9], lineStrikeClass: "column-3" },
   // diagonals
-  { combo: [1, 5, 9] },
-  { combo: [3, 5, 7] },
+  { combo: [1, 5, 9], lineStrikeClass: "diagonal-1" },
+  { combo: [3, 5, 7], lineStrikeClass: "diagonal-2" },
 ];
 
+const alertModal = document.querySelector(".alert");
 const dialog = document.querySelector(".winner");
 // dialog.returnValue = "The Winner!";
 
+const confirmBtn = document.querySelector(".confirm");
 const restartBtn = document.querySelector(".restart");
 
 const turnText = document.querySelector(".turn");
@@ -63,9 +67,11 @@ const drawSymbol = (event) => {
   console.log("clickedBoxNum:", clickedBoxNum);
   if (playerOne.turn) {
     if (symbol.innerHTML === "O" || symbol.innerHTML === "X") {
-      alert("This box is not empty, please choose another one.");
+      alertModal.showModal();
+      alertModal.style.display = "block";
     } else {
       symbol.innerHTML = `${playerOne.symbol}`;
+      symbol.style.opacity = "1";
       board[clickedBoxNum - 1] = `${playerOne.symbol}`;
       playerOne.turn = false;
       playerTwo.turn = true;
@@ -73,9 +79,11 @@ const drawSymbol = (event) => {
     }
   } else if (playerTwo.turn) {
     if (symbol.innerHTML === "X" || symbol.innerHTML === "O") {
-      alert("This box is not empty, please choose another one.");
+      alertModal.showModal();
+      alertModal.style.display = "block";
     } else {
       symbol.innerHTML = `${playerTwo.symbol}`;
+      symbol.style.opacity = "1";
       board[clickedBoxNum - 1] = `${playerTwo.symbol}`;
       playerTwo.turn = false;
       playerOne.turn = true;
@@ -134,17 +142,22 @@ const restartGame = () => {
   playerOne.turn = true;
   playerTwo.turn = false;
   turnText.innerHTML = `Player One's Turn (${playerOne.symbol})`;
+  lineStrike.className = "strike-line";
 };
 
 restartBtn.addEventListener("click", restartGame);
 
-// for (let i = 0; i < boxes.length; i++) {
-//   console.log(boxes[i].dataset.indexNumber);
-// }
+const closeAlert = () => {
+  alertModal.close();
+  alertModal.style.display = "none";
+};
+
+confirmBtn.addEventListener("click", closeAlert);
 
 const checkWinner = () => {
   for (const winningCombo of winningCombos) {
     const combo = winningCombo.combo;
+    const lineStrikeClass = winningCombo.lineStrikeClass;
     // const { combo, highlightClass } = winningCombo;
     const boxValue1 = board[combo[0] - 1];
     const boxValue2 = board[combo[1] - 1];
@@ -155,9 +168,10 @@ const checkWinner = () => {
       boxValue1 === boxValue2 &&
       boxValue1 === boxValue3
     ) {
-      boxes[combo[0] - 1].classList.add("win-combo");
-      boxes[combo[1] - 1].classList.add("win-combo");
-      boxes[combo[2] - 1].classList.add("win-combo");
+      // boxes[combo[0] - 1].classList.add("win-combo");
+      // boxes[combo[1] - 1].classList.add("win-combo");
+      // boxes[combo[2] - 1].classList.add("win-combo");
+      lineStrike.classList.add(lineStrikeClass);
       if (
         boxValue1 === `${playerOne.symbol}` &&
         boxValue2 === `${playerOne.symbol}` &&
