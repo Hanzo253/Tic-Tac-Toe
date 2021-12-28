@@ -129,36 +129,8 @@ body {
   border-right: none;
 }
 
-.row-1 {
-  background-color: #495;
-}
-
-.row-2 {
-  background-color: #495;
-}
-
-.row-3 {
-  background-color: #495;
-}
-
-.column-1 {
-  background-color: #495;
-}
-
-.column-2 {
-  background-color: #495;
-}
-
-.column-3 {
-  background-color: #495;
-}
-
-.diagonal-1 {
-  background-color: #495;
-}
-
-.diagonal-2 {
-  background-color: #495;
+.win-combo {
+  background-color: #51cf66;
 }
 
 /***************************/

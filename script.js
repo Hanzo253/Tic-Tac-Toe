@@ -13,6 +13,7 @@ let playerTwo = {
 };
 
 const boxes = document.querySelectorAll(".box");
+const symbols = document.querySelectorAll(".symbol");
 const box1 = document.querySelector(".box-1");
 const box2 = document.querySelector(".box-2");
 const box3 = document.querySelector(".box-3");
@@ -28,16 +29,16 @@ board.fill(null);
 
 const winningCombos = [
   // rows
-  { combo: [1, 2, 3], highlightClass: "row-1" },
-  { combo: [4, 5, 6], highlightClass: "row-2" },
-  { combo: [7, 8, 9], highlightClass: "row-3" },
+  { combo: [1, 2, 3] },
+  { combo: [4, 5, 6] },
+  { combo: [7, 8, 9] },
   // columns
-  { combo: [1, 4, 7], highlightClass: "column-1" },
-  { combo: [2, 5, 8], highlightClass: "column-2" },
-  { combo: [3, 6, 9], highlightClass: "column-3" },
+  { combo: [1, 4, 7] },
+  { combo: [2, 5, 8] },
+  { combo: [3, 6, 9] },
   // diagonals
-  { combo: [1, 5, 9], highlightClass: "diagonal-1" },
-  { combo: [3, 5, 7], highlightClass: "diagonal-2" },
+  { combo: [1, 5, 9] },
+  { combo: [3, 5, 7] },
 ];
 
 const dialog = document.querySelector(".winner");
@@ -109,6 +110,11 @@ const showWinMessage = (winner) => {
 const restartGame = () => {
   dialog.close();
   dialog.style.display = "none";
+  board.fill(null);
+  for (let i = 0; i < symbols.length; i++) {
+    symbols[i].innerHTML = "";
+  }
+  boxes.forEach((box) => box.classList.remove("win-combo"));
 };
 
 restartBtn.addEventListener("click", restartGame);
@@ -120,7 +126,6 @@ for (let i = 0; i < boxes.length; i++) {
 const checkWinner = () => {
   for (const winningCombo of winningCombos) {
     const combo = winningCombo.combo;
-    const highlightClass = winningCombo.highlightClass;
     // const { combo, highlightClass } = winningCombo;
     const boxValue1 = board[combo[0] - 1];
     const boxValue2 = board[combo[1] - 1];
@@ -131,9 +136,9 @@ const checkWinner = () => {
       boxValue1 === boxValue2 &&
       boxValue1 === boxValue3
     ) {
-      boxes[combo[0] - 1].classList.add(highlightClass);
-      boxes[combo[1] - 1].classList.add(highlightClass);
-      boxes[combo[2] - 1].classList.add(highlightClass);
+      boxes[combo[0] - 1].classList.add("win-combo");
+      boxes[combo[1] - 1].classList.add("win-combo");
+      boxes[combo[2] - 1].classList.add("win-combo");
       if (boxValue1 === "X" && boxValue2 === "X" && boxValue3 === "X") {
         showWinMessage(playerOne.name);
         return;
