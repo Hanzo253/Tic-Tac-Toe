@@ -48,6 +48,11 @@ const restartBtn = document.querySelector(".restart");
 
 const turnText = document.querySelector(".turn");
 
+const playerOneScore = document.querySelector("#one-score");
+const playerTwoScore = document.querySelector("#two-score");
+const tieCounter = document.querySelector("#tie-score");
+let tieNum = 0;
+
 let symbolNum = 0;
 let XorO = true;
 
@@ -141,9 +146,13 @@ const checkWinner = () => {
       boxes[combo[2] - 1].classList.add("win-combo");
       if (boxValue1 === "X" && boxValue2 === "X" && boxValue3 === "X") {
         showWinMessage(playerOne.name);
+        playerOne.score++;
+        playerOneScore.innerHTML = playerOne.score;
         return;
       } else if (boxValue1 === "O" && boxValue2 === "O" && boxValue3 === "O") {
         showWinMessage(playerTwo.name);
+        playerTwo.score++;
+        playerTwoScore.innerHTML = playerTwo.score;
         return;
       }
     }
@@ -152,6 +161,8 @@ const checkWinner = () => {
   const noWinnerBoard = board.every((box) => box !== null);
 
   if (noWinnerBoard) {
+    tieNum++;
     showWinMessage(null);
+    tieCounter.innerHTML = tieNum;
   }
 };
