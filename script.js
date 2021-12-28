@@ -57,8 +57,8 @@ const drawSymbol = (event) => {
   const clickedBoxNum = clickedBox.dataset.indexNumber;
   console.log("clickedBoxNum:", clickedBoxNum);
   if (XorO) {
-    if (symbol.innerHTML === "O") {
-      alert("Spot Taken");
+    if (symbol.innerHTML === "O" || symbol.innerHTML === "X") {
+      alert("This box is not empty, please choose another one.");
     } else {
       symbol.innerHTML = `X`;
       board[clickedBoxNum - 1] = "X";
@@ -66,8 +66,8 @@ const drawSymbol = (event) => {
       turnText.innerHTML = `Player Two's Turn (O)`;
     }
   } else {
-    if (symbol.innerHTML === "X") {
-      alert("Spot Taken");
+    if (symbol.innerHTML === "X" || symbol.innerHTML === "O") {
+      alert("This box is not empty, please choose another one.");
     } else {
       symbol.innerHTML = `O`;
       board[clickedBoxNum - 1] = "O";
