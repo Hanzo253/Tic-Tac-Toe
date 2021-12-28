@@ -54,7 +54,6 @@ const tieCounter = document.querySelector("#tie-score");
 let tieNum = 0;
 
 let symbolNum = 0;
-let XorO = true;
 
 const drawSymbol = (event) => {
   const symbol = document.querySelector(`.symbol-${symbolNum + 1}`);
@@ -62,23 +61,25 @@ const drawSymbol = (event) => {
   const clickedBox = event.target;
   const clickedBoxNum = clickedBox.dataset.indexNumber;
   console.log("clickedBoxNum:", clickedBoxNum);
-  if (XorO) {
+  if (playerOne.turn) {
     if (symbol.innerHTML === "O" || symbol.innerHTML === "X") {
       alert("This box is not empty, please choose another one.");
     } else {
-      symbol.innerHTML = `X`;
-      board[clickedBoxNum - 1] = "X";
-      XorO = false;
-      turnText.innerHTML = `Player Two's Turn (O)`;
+      symbol.innerHTML = `${playerOne.symbol}`;
+      board[clickedBoxNum - 1] = `${playerOne.symbol}`;
+      playerOne.turn = false;
+      playerTwo.turn = true;
+      turnText.innerHTML = `Player Two's Turn (${playerTwo.symbol})`;
     }
-  } else {
+  } else if (playerTwo.turn) {
     if (symbol.innerHTML === "X" || symbol.innerHTML === "O") {
       alert("This box is not empty, please choose another one.");
     } else {
-      symbol.innerHTML = `O`;
-      board[clickedBoxNum - 1] = "O";
-      XorO = true;
-      turnText.innerHTML = `Player One's Turn (X)`;
+      symbol.innerHTML = `${playerTwo.symbol}`;
+      board[clickedBoxNum - 1] = `${playerTwo.symbol}`;
+      playerTwo.turn = false;
+      playerOne.turn = true;
+      turnText.innerHTML = `Player One's Turn (${playerOne.symbol})`;
     }
   }
 
@@ -92,7 +93,7 @@ const changeSymbolNum = () => {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener("mouseenter", (e) => {
       symbolNum = i;
-      console.log(symbolNum);
+      // console.log(symbolNum);
     });
     boxes[i].addEventListener("click", drawSymbol);
   }
@@ -120,13 +121,23 @@ const restartGame = () => {
     symbols[i].innerHTML = "";
   }
   boxes.forEach((box) => box.classList.remove("win-combo"));
+  if (playerOne.symbol === "X" || playerTwo.symbol === "O") {
+    playerOne.symbol = "O";
+    playerTwo.symbol = "X";
+  } else {
+    playerOne.symbol = "X";
+    playerTwo.symbol = "O";
+  }
+  playerOne.turn = true;
+  playerTwo.turn = false;
+  turnText.innerHTML = `Player One's Turn (${playerOne.symbol})`;
 };
 
 restartBtn.addEventListener("click", restartGame);
 
-for (let i = 0; i < boxes.length; i++) {
-  console.log(boxes[i].dataset.indexNumber);
-}
+// for (let i = 0; i < boxes.length; i++) {
+//   console.log(boxes[i].dataset.indexNumber);
+// }
 
 const checkWinner = () => {
   for (const winningCombo of winningCombos) {
@@ -144,12 +155,20 @@ const checkWinner = () => {
       boxes[combo[0] - 1].classList.add("win-combo");
       boxes[combo[1] - 1].classList.add("win-combo");
       boxes[combo[2] - 1].classList.add("win-combo");
-      if (boxValue1 === "X" && boxValue2 === "X" && boxValue3 === "X") {
+      if (
+        boxValue1 === `${playerOne.symbol}` &&
+        boxValue2 === `${playerOne.symbol}` &&
+        boxValue3 === `${playerOne.symbol}`
+      ) {
         showWinMessage(playerOne.name);
         playerOne.score++;
         playerOneScore.innerHTML = playerOne.score;
         return;
-      } else if (boxValue1 === "O" && boxValue2 === "O" && boxValue3 === "O") {
+      } else if (
+        boxValue1 === `${playerTwo.symbol}` &&
+        boxValue2 === `${playerTwo.symbol}` &&
+        boxValue3 === `${playerTwo.symbol}`
+      ) {
         showWinMessage(playerTwo.name);
         playerTwo.score++;
         playerTwoScore.innerHTML = playerTwo.score;
