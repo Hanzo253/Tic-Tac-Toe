@@ -83,13 +83,16 @@ let tieNum = 0;
 // symbol position
 let symbolNum = 0;
 
+// function that handles drawing the symbol inside a box
 const drawSymbol = (event) => {
   const symbol = document.querySelector(`.symbol-${symbolNum + 1}`);
   const box = document.querySelector(`.box-${symbolNum + 1}`);
   const clickedBox = event.target;
   const clickedBoxNum = clickedBox.dataset.indexNumber;
-  console.log("clickedBoxNum:", clickedBoxNum);
+  // console.log("clickedBoxNum:", clickedBoxNum);
+  // if it is player one's turn
   if (playerOne.turn) {
+    // if there is an X or an O in a box already
     if (symbol.innerHTML === "O" || symbol.innerHTML === "X") {
       alertModal.showModal();
       alertModal.style.display = "block";
@@ -102,7 +105,9 @@ const drawSymbol = (event) => {
       playerTwo.turn = true;
       turnText.innerHTML = `Player Two's Turn (${playerTwo.symbol})`;
     }
+    // if it is player one's turn
   } else if (playerTwo.turn) {
+    // if there is an X or an O in a box already
     if (symbol.innerHTML === "X" || symbol.innerHTML === "O") {
       alertModal.showModal();
       alertModal.style.display = "block";
@@ -117,12 +122,16 @@ const drawSymbol = (event) => {
     }
   }
 
-  console.log(board);
+  // console.log(board);
+
+  // the cursor will turn to the not allowed symbol after clicking on a box
   box.style.cursor = "not-allowed";
-  // box.style.pointerEvents = "none";
+
+  // checks if there is a winner
   checkWinner();
 };
 
+// this function assigns the symbol number based on which box the user is hovering to
 const changeSymbolNum = () => {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener("mouseenter", (e) => {
@@ -135,6 +144,7 @@ const changeSymbolNum = () => {
 
 changeSymbolNum();
 
+// function that shows the win message
 const showWinMessage = (winner) => {
   const message = document.querySelector(".win-message");
 
@@ -147,6 +157,7 @@ const showWinMessage = (winner) => {
   dialog.style.display = "block";
 };
 
+// restart the game function
 const restartGame = () => {
   dialog.close();
   dialog.style.display = "none";
@@ -171,15 +182,19 @@ const restartGame = () => {
   lineStrike.className = "strike-line";
 };
 
+// restart button event listener
 restartBtn.addEventListener("click", restartGame);
 
+// closes the alert dialog
 const closeAlert = () => {
   alertModal.close();
   alertModal.style.display = "none";
 };
 
+// OK button event listener
 confirmBtn.addEventListener("click", closeAlert);
 
+// checks for a winner with the winning conditions
 const checkWinner = () => {
   for (const winningCombo of winningCombos) {
     const combo = winningCombo.combo;
@@ -222,8 +237,10 @@ const checkWinner = () => {
     }
   }
 
+  // if there is a tie
   const noWinnerBoard = board.every((box) => box !== null);
 
+  // shows tie message and adds 1 to tie counter
   if (noWinnerBoard) {
     tieNum++;
     showWinMessage(null);
@@ -232,6 +249,7 @@ const checkWinner = () => {
   }
 };
 
+// fixes the tic tac toe board borders after switching modes
 const fixBoardBorders = () => {
   // eliminate border top
   box1.style.borderTop = "none";
@@ -254,6 +272,7 @@ const fixBoardBorders = () => {
   box9.style.borderRight = "none";
 };
 
+// turning on dark mode
 const toggleDarkMode = () => {
   document.body.classList.remove("light-mode");
   document.body.classList.add("dark-mode");
@@ -264,6 +283,7 @@ const toggleDarkMode = () => {
   localStorage.setItem("darkMode", "enabled");
 };
 
+// turning on light mode
 const toggleLightMode = () => {
   document.body.classList.remove("dark-mode");
   document.body.classList.add("light-mode");
@@ -274,10 +294,12 @@ const toggleLightMode = () => {
   localStorage.setItem("darkMode", null);
 };
 
+// if darkMode item property has the value of "enabled" then it activate dark mode
 if (darkMode === "enabled") {
   toggleDarkMode();
 }
 
+// toggle button function
 toggle.addEventListener("click", function () {
   darkMode = localStorage.getItem("darkMode");
   if (darkMode !== "enabled") {
