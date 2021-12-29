@@ -1,0 +1,55 @@
+/***************************/
+/* ABOVE 1224px */
+/***************************/
+
+@media screen and (min-width: 77em) {
+  .toggle-text {
+    right: 11%;
+  }
+}
+
+/***************************/
+/* BELOW 900px */
+/***************************/
+@media screen and (max-width: 56em) {
+  html {
+    font-size: 56.25%;
+  }
+
+  .toggle-text {
+    right: 15%;
+  }
+
+  .tictactoe-grid {
+    min-width: 50%;
+  }
+
+  .diagonal-1 {
+    transform: skewY(53deg);
+  }
+
+  .diagonal-2 {
+    transform: skewY(-53deg);
+  }
+}
+
+/***************************/
+/* BELOW 480px */
+/***************************/
+@media screen and (max-width: 30em) {
+  html {
+    font-size: 25%;
+  }
+
+  .tictactoe-grid {
+    min-width: 80%;
+  }
+
+  .diagonal-1 {
+    transform: skewY(53deg);
+  }
+
+  .diagonal-2 {
+    transform: skewY(-53deg);
+  }
+}
