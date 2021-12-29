@@ -30,5 +30,5 @@ A tic tac toe web application I have created for my Interapt/General Assembly Ja
 
 ## If I had more time I would change this
 
-- I would try to work more on my media queries to make the tic tac toe app more responsiveness
+- I would try to work more on my media queries to make the tic tac toe app more responsive
 - Add more animations
