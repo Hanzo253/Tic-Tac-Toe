@@ -2,6 +2,8 @@
 
 A tic tac toe web application I have created for my Interapt/General Assembly Java and Software Engineering Immersive course.
 
+Link to Tic Tac Toe: [Tic Tac Toe](https://tictactoeimmersive.netlify.app/)
+
 ## How I worked on this project
 
 - I built this app using HTML, CSS, and JavaScript
