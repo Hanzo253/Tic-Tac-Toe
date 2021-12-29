@@ -12,8 +12,11 @@ let playerTwo = {
   score: 0,
 };
 
+const toggle = document.querySelector(".toggle-input");
+const toggleText = document.querySelector(".toggle-text");
+let darkMode = localStorage.getItem("darkMode");
+
 const boxes = document.querySelectorAll(".box");
-const symbols = document.querySelectorAll(".symbol");
 const box1 = document.querySelector(".box-1");
 const box2 = document.querySelector(".box-2");
 const box3 = document.querySelector(".box-3");
@@ -23,7 +26,7 @@ const box6 = document.querySelector(".box-6");
 const box7 = document.querySelector(".box-7");
 const box8 = document.querySelector(".box-8");
 const box9 = document.querySelector(".box-9");
-
+const symbols = document.querySelectorAll(".symbol");
 const board = Array(boxes.length);
 board.fill(null);
 
@@ -202,3 +205,56 @@ const checkWinner = () => {
     tieCounter.innerHTML = tieNum;
   }
 };
+
+const fixBoardBorders = () => {
+  // eliminate border top
+  box1.style.borderTop = "none";
+  box2.style.borderTop = "none";
+  box3.style.borderTop = "none";
+
+  // eliminate border left
+  box1.style.borderLeft = "none";
+  box4.style.borderLeft = "none";
+  box7.style.borderLeft = "none";
+
+  // eliminate border bottom
+  box7.style.borderBottom = "none";
+  box8.style.borderBottom = "none";
+  box9.style.borderBottom = "none";
+
+  // eliminate border right
+  box3.style.borderRight = "none";
+  box6.style.borderRight = "none";
+  box9.style.borderRight = "none";
+};
+
+const toggleDarkMode = () => {
+  document.body.classList.remove("light-mode");
+  document.body.classList.add("dark-mode");
+  boxes.forEach((box) => (box.style.border = "#f8f9fa 5px solid"));
+  fixBoardBorders();
+  toggleText.innerText = "Dark Mode";
+  localStorage.setItem("darkMode", "enabled");
+};
+
+const toggleLightMode = () => {
+  document.body.classList.remove("dark-mode");
+  document.body.classList.add("light-mode");
+  boxes.forEach((box) => (box.style.border = "#212529 5px solid"));
+  fixBoardBorders();
+  toggleText.innerText = "Light Mode";
+  localStorage.setItem("darkMode", null);
+};
+
+if (darkMode === "enabled") {
+  toggleDarkMode();
+}
+
+toggle.addEventListener("click", function () {
+  darkMode = localStorage.getItem("darkMode");
+  if (darkMode !== "enabled") {
+    toggleDarkMode();
+  } else {
+    toggleLightMode();
+  }
+});

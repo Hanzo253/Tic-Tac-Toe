@@ -56,7 +56,7 @@ html {
   /* font-size: 10px; */
   /* 10px / 16px = 0.625 = 62.5% */
   font-size: 62.5%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -65,6 +65,7 @@ body {
   font-weight: 400;
   color: #f8f9fa;
   overflow: hidden;
+  transition: all 0.3s;
 }
 
 /***************************/
@@ -73,7 +74,7 @@ body {
 
 .board {
   position: relative;
-  min-height: 70vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,11 +101,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #212529;
+  /* color: #212529; */
 }
 
 .box:hover {
-  background-color: #495;
+  background-color: #1098ad;
 }
 
 .box-1,
@@ -131,9 +132,9 @@ body {
   border-right: none;
 }
 
-/* .win-combo {
+.win-combo {
   background-color: #51cf66;
-} */
+}
 
 /***********************************/
 /* SYMBOLS AND STRIKE LINE CLASSES */
@@ -146,7 +147,7 @@ body {
 
 .strike-line {
   position: absolute;
-  background-color: #51cf66;
+  background-color: #f03e3e;
 }
 
 .row-1 {
@@ -285,7 +286,7 @@ body {
 }
 
 .turn {
-  color: #212529;
+  /* color: #212529; */
   font-size: 3rem;
 }
 
@@ -304,7 +305,7 @@ body {
 .player-two-score,
 .tie-counter {
   display: inline;
-  color: #212529;
+  /* color: #212529; */
   margin: 4.8rem;
   /* margin-right: 6.4rem; */
   font-size: 3rem;
@@ -318,4 +319,102 @@ body {
   display: block;
   text-align: center;
   margin-top: 3.2rem;
+}
+
+/******************************/
+/* LIGHT AND DARK MODE TOGGLE */
+/******************************/
+
+.wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+  align-items: center;
+  position: relative;
+}
+
+.toggle-text {
+  position: absolute;
+  right: 8%;
+  /* color: #212529; */
+  font-size: 1.6rem;
+}
+
+/* LIGHT MODE */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+  margin-left: 10rem;
+  padding: 4px;
+  border-radius: 40px;
+}
+
+/* .toggle:before,
+.toggle:after {
+  content: "";
+  display: table;
+}
+
+.toggle:after {
+  clear: both;
+} */
+
+.toggle-bg {
+  position: absolute;
+  top: 0px;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f3f5;
+  border-radius: 40px;
+  border: 4px solid #e9ecef;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.toggle-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  border-radius: 40px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  margin-left: 5.85rem;
+  background-color: #343a40;
+  border: 4px solid #7a7c7f;
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* DARK MODE */
+.toggle-input:checked ~ .toggle-switch {
+  margin-left: 0;
+  border-color: #adb5bd;
+  background-color: #f8f9fa;
+}
+
+.toggle-input:checked ~ .toggle-bg {
+  background-color: #343a40;
+  border-color: #212529;
+}
+
+/* Light Mode Class */
+.light-mode {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Dark Mode Class */
+.dark-mode {
+  background-color: #212529;
+  color: #f8f9fa;
 }
