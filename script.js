@@ -98,7 +98,6 @@ const drawSymbol = (event) => {
       alertModal.style.display = "block";
     } else {
       symbol.innerHTML = `${playerOne.symbol}`;
-      symbol.style.opacity = "1";
       playerOneClick.play();
       board[clickedBoxNum - 1] = `${playerOne.symbol}`;
       playerOne.turn = false;
@@ -113,7 +112,6 @@ const drawSymbol = (event) => {
       alertModal.style.display = "block";
     } else {
       symbol.innerHTML = `${playerTwo.symbol}`;
-      symbol.style.opacity = "1";
       playerTwoClick.play();
       board[clickedBoxNum - 1] = `${playerTwo.symbol}`;
       playerTwo.turn = false;
