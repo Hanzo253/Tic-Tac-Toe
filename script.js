@@ -50,6 +50,13 @@ const alertModal = document.querySelector(".alert");
 const dialog = document.querySelector(".winner");
 // dialog.returnValue = "The Winner!";
 
+const playerOneClick = new Audio("sounds/lm_ghost_vanishes.wav");
+const playerTwoClick = new Audio("sounds/smsunshine_talk_start.wav");
+// const playerOneClick = new Audio("sounds/lm_inventory-open.wav");
+// const playerTwoClick = new Audio("sounds/lm_inventory-close.wav");
+const winnerSound = new Audio("sounds/lm_pickup_key.wav");
+const tieSound = new Audio("sounds/lm_boss_key.wav");
+
 const confirmBtn = document.querySelector(".confirm");
 const restartBtn = document.querySelector(".restart");
 
@@ -75,6 +82,7 @@ const drawSymbol = (event) => {
     } else {
       symbol.innerHTML = `${playerOne.symbol}`;
       symbol.style.opacity = "1";
+      playerOneClick.play();
       board[clickedBoxNum - 1] = `${playerOne.symbol}`;
       playerOne.turn = false;
       playerTwo.turn = true;
@@ -87,6 +95,7 @@ const drawSymbol = (event) => {
     } else {
       symbol.innerHTML = `${playerTwo.symbol}`;
       symbol.style.opacity = "1";
+      playerTwoClick.play();
       board[clickedBoxNum - 1] = `${playerTwo.symbol}`;
       playerTwo.turn = false;
       playerOne.turn = true;
@@ -181,6 +190,7 @@ const checkWinner = () => {
         boxValue3 === `${playerOne.symbol}`
       ) {
         showWinMessage(playerOne.name);
+        winnerSound.play();
         playerOne.score++;
         playerOneScore.innerHTML = playerOne.score;
         return;
@@ -190,6 +200,7 @@ const checkWinner = () => {
         boxValue3 === `${playerTwo.symbol}`
       ) {
         showWinMessage(playerTwo.name);
+        winnerSound.play();
         playerTwo.score++;
         playerTwoScore.innerHTML = playerTwo.score;
         return;
@@ -202,6 +213,7 @@ const checkWinner = () => {
   if (noWinnerBoard) {
     tieNum++;
     showWinMessage(null);
+    tieSound.play();
     tieCounter.innerHTML = tieNum;
   }
 };
