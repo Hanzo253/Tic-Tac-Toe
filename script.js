@@ -104,7 +104,7 @@ const drawSymbol = (event) => {
       playerTwo.turn = true;
       turnText.innerHTML = `Player Two's Turn (${playerTwo.symbol})`;
     }
-    // if it is player one's turn
+    // if it is player two's turn
   } else if (playerTwo.turn) {
     // if there is an X or an O in a box already
     if (symbol.innerHTML === "X" || symbol.innerHTML === "O") {
