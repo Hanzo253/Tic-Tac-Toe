@@ -1,3 +1,4 @@
+// player one object
 let playerOne = {
   name: "Player One",
   symbol: "X",
@@ -5,6 +6,7 @@ let playerOne = {
   score: 0,
 };
 
+// player two object
 let playerTwo = {
   name: "Player Two",
   symbol: "O",
@@ -12,10 +14,12 @@ let playerTwo = {
   score: 0,
 };
 
+// light mode/dark mode toggle
 const toggle = document.querySelector(".toggle-input");
 const toggleText = document.querySelector(".toggle-text");
 let darkMode = localStorage.getItem("darkMode");
 
+// boxes
 const boxes = document.querySelectorAll(".box");
 const box1 = document.querySelector(".box-1");
 const box2 = document.querySelector(".box-2");
@@ -26,12 +30,18 @@ const box6 = document.querySelector(".box-6");
 const box7 = document.querySelector(".box-7");
 const box8 = document.querySelector(".box-8");
 const box9 = document.querySelector(".box-9");
+
+//symbols
 const symbols = document.querySelectorAll(".symbol");
+
+// board
 const board = Array(boxes.length);
 board.fill(null);
 
+// strike line
 const lineStrike = document.querySelector("#strike-line");
 
+// winning combinations
 const winningCombos = [
   // rows
   { combo: [1, 2, 3], lineStrikeClass: "row-1" },
@@ -46,27 +56,31 @@ const winningCombos = [
   { combo: [3, 5, 7], lineStrikeClass: "diagonal-2" },
 ];
 
+// modals for alert and win message
 const alertModal = document.querySelector(".alert");
 const dialog = document.querySelector(".winner");
 // dialog.returnValue = "The Winner!";
 
+// sound effects
 const playerOneClick = new Audio("sounds/lm_ghost_vanishes.wav");
 const playerTwoClick = new Audio("sounds/smsunshine_talk_start.wav");
-// const playerOneClick = new Audio("sounds/lm_inventory-open.wav");
-// const playerTwoClick = new Audio("sounds/lm_inventory-close.wav");
 const winnerSound = new Audio("sounds/lm_pickup_key.wav");
 const tieSound = new Audio("sounds/lm_boss_key.wav");
 
+// restart button and confirm button
 const confirmBtn = document.querySelector(".confirm");
 const restartBtn = document.querySelector(".restart");
 
+// turn indicator
 const turnText = document.querySelector(".turn");
 
+// scoreboard
 const playerOneScore = document.querySelector("#one-score");
 const playerTwoScore = document.querySelector("#two-score");
 const tieCounter = document.querySelector("#tie-score");
 let tieNum = 0;
 
+// symbol position
 let symbolNum = 0;
 
 const drawSymbol = (event) => {

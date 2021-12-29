@@ -1,8 +1,8 @@
 /***************************/
-/* ABOVE 1224px */
+/* BELOW 1440px */
 /***************************/
 
-@media screen and (min-width: 77em) {
+@media screen and (max-width: 90em) {
   .toggle-text {
     right: 11%;
   }
