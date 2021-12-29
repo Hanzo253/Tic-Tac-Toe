@@ -363,12 +363,12 @@ body {
 .toggle-bg {
   position: absolute;
   top: 0px;
-  left: -2px;
+  left: -0.2rem;
   width: 100%;
   height: 100%;
-  background-color: #f1f3f5;
-  border-radius: 40px;
-  border: 4px solid #e9ecef;
+  background-color: #e0e1e2;
+  border-radius: 4rem;
+  border: 0.4rem solid #f9fafb;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -378,8 +378,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid red;
-  border-radius: 40px;
+  border: 0.1rem solid red;
+  border-radius: 4rem;
   z-index: 2;
   opacity: 0;
 }
@@ -390,7 +390,7 @@ body {
   height: 3rem;
   margin-left: 5.85rem;
   background-color: #343a40;
-  border: 4px solid #7a7c7f;
+  border: 0.4rem solid #7c7d7d;
   border-radius: 50%;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

@@ -243,6 +243,7 @@ const fixBoardBorders = () => {
 const toggleDarkMode = () => {
   document.body.classList.remove("light-mode");
   document.body.classList.add("dark-mode");
+  toggle.checked = true;
   boxes.forEach((box) => (box.style.border = "#f8f9fa 5px solid"));
   fixBoardBorders();
   toggleText.innerText = "Dark Mode";
@@ -252,6 +253,7 @@ const toggleDarkMode = () => {
 const toggleLightMode = () => {
   document.body.classList.remove("dark-mode");
   document.body.classList.add("light-mode");
+  toggle.checked = false;
   boxes.forEach((box) => (box.style.border = "#212529 5px solid"));
   fixBoardBorders();
   toggleText.innerText = "Light Mode";
